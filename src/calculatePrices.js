@@ -3,6 +3,10 @@ function calculatePrices(products, exchangeRates) {
     throw new Error("Products должно быть массивом");
   }
 
+  if (!checkForFields(products)) {
+    throw new Error("Для каждого продукта должны быть заполнены все поля");
+  }
+
   if (!fieldsCheck(products, exchangeRates)) {
     throw new Error("Для каждого продукта должны быть корректно заполнены все поля");
   }
@@ -35,7 +39,7 @@ function calculatePrices(products, exchangeRates) {
   return prices;
 }
 
-function fieldsCheck(products, exchangeRates) {
+function checkForFields(products) {
   const fields = ["name", "quantity", "currency", "price"];
   let check = true;
 
@@ -45,10 +49,22 @@ function fieldsCheck(products, exchangeRates) {
         check = false;
       }
     });
+  });
 
-    if (!(Number.isInteger(product.quantity) && product.quantity > 0 &&
-        typeof product.price === "number" && product.price > 0 &&
-        (exchangeRates.hasOwnProperty(product.currency) || product.currency === "RUB"))) {
+  return check;
+}
+
+function fieldsCheck(products, exchangeRates) {
+  let check = true;
+
+  products.forEach(product => {
+    const {quantity, price, currency} = product;
+    const parseIntQuantity = parseInt(quantity);
+    const parseFloatPrice = parseFloat(price);
+
+    if (!(parseIntQuantity == quantity && Number.isInteger(parseIntQuantity) && parseIntQuantity > 0 &&
+        parseFloatPrice == price && typeof parseFloatPrice === "number" && parseFloatPrice > 0 &&
+        (exchangeRates.hasOwnProperty(currency) || currency === "RUB"))) {
       check = false;
     }
   });
