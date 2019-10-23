@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/react/app.js',
+  entry: './src/react/index.js',
   output: {
     path: path.resolve(__dirname, 'public', 'js', 'dist'),
     filename: 'main.js'
