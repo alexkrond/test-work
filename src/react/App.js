@@ -1,13 +1,6 @@
 import React from "react"
+import Basket from "./components/Basket.js"
 
-
-class App extends React.Component {
-  render() {
-    return (
-        <div>
-        </div>
-  );
-  }
-}
+const App = () => <main> <Basket/> </main>;
 
 export default App
