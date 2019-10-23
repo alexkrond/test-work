@@ -4,7 +4,7 @@ const cron = require("node-cron");
 const app = express();
 const currencies = ["USD", "EUR"];
 const exchangeRates = {};
-const updateExchangeRates = require("./scripts/updateExchangeRates.js")(exchangeRates, currencies);
+const updateExchangeRates = require("./src/updateExchangeRates.js")(exchangeRates, currencies);
 const api = require("./routes/api/api.js")(exchangeRates);
 
 

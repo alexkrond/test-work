@@ -1,5 +1,5 @@
 const express = require("express");
-const calculatePrices = require("../../scripts/calculatePrices.js");
+const calculatePrices = require("../../src/calculatePrices.js");
 
 function initRouter(exchangeRates) {
   const router = express.Router();
